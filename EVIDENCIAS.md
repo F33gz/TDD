@@ -246,3 +246,38 @@ Resultado:
 [INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
+
+Commit:
+
+```text
+6624c6e refactor: implement reservation cancellation and refactor reservation lookup
+```
+
+## Ciclo 4 - Recuperar capacidad
+
+### RED
+
+Prueba:
+
+```java
+@Test
+void shouldRestoreCapacityAfterCancellation() {
+    ReservationManager manager = new ReservationManager(30);
+    LocalDate date = LocalDate.of(2026, 9, 15);
+    LocalTime time = LocalTime.of(20, 0);
+    Reservation reservation = manager.createReservation("Ana", 30, date, time);
+    assertFalse(manager.hasAvailability(date, time, 1));
+
+    manager.cancelReservation(reservation.getCode());
+
+    assertTrue(manager.hasAvailability(date, time, 30));
+}
+```
+
+Resultado:
+
+```text
+[ERROR] Tests run: 20, Failures: 1, Errors: 0, Skipped: 0
+shouldRestoreCapacityAfterCancellation expected: <true> but was: <false>
+[INFO] BUILD FAILURE
+```
