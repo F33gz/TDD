@@ -160,4 +160,42 @@ class ReservationManagerTest {
 
         assertTrue(manager.hasAvailability(LocalDate.of(2026, 9, 16), time, 30));
     }
+
+    @Test
+    void shouldCancelReservationByCode() {
+        ReservationManager manager = new ReservationManager(30);
+        Reservation reservation = manager.createReservation(
+                "Ana",
+                4,
+                LocalDate.of(2026, 9, 15),
+                LocalTime.of(20, 0));
+
+        manager.cancelReservation(reservation.getCode());
+
+        assertTrue(reservation.isCancelled());
+    }
+
+    @Test
+    void shouldRejectUnknownReservationCode() {
+        ReservationManager manager = new ReservationManager(30);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> manager.cancelReservation("unknown-code"));
+    }
+
+    @Test
+    void shouldRejectCancellingReservationTwice() {
+        ReservationManager manager = new ReservationManager(30);
+        Reservation reservation = manager.createReservation(
+                "Ana",
+                4,
+                LocalDate.of(2026, 9, 15),
+                LocalTime.of(20, 0));
+        manager.cancelReservation(reservation.getCode());
+
+        assertThrows(
+                IllegalStateException.class,
+                () -> manager.cancelReservation(reservation.getCode()));
+    }
 }

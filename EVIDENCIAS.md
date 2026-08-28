@@ -178,3 +178,30 @@ Commit:
 ```text
 91e2a48 feat: refactor capacity check in reservation creation to use hasAvailability method
 ```
+
+## Ciclo 3 - Cancelar reserva
+
+### RED
+
+Prueba:
+
+```java
+@Test
+void shouldCancelReservationByCode() {
+    ReservationManager manager = new ReservationManager(30);
+    Reservation reservation = manager.createReservation(
+            "Ana", 4, LocalDate.of(2026, 9, 15), LocalTime.of(20, 0));
+
+    manager.cancelReservation(reservation.getCode());
+
+    assertTrue(reservation.isCancelled());
+}
+```
+
+Resultado:
+
+```text
+[ERROR] cannot find symbol: method cancelReservation(java.lang.String)
+[ERROR] cannot find symbol: method isCancelled()
+[INFO] BUILD FAILURE
+```
