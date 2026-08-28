@@ -38,7 +38,9 @@ public class ReservationManager {
     public boolean hasAvailability(LocalDate date, LocalTime time, int partySize) {
         int occupiedSeats = 0;
         for (Reservation reservation : reservations) {
-            if (reservation.getDate().equals(date) && reservation.getTime().equals(time)) {
+            if (!reservation.isCancelled()
+                    && reservation.getDate().equals(date)
+                    && reservation.getTime().equals(time)) {
                 occupiedSeats += reservation.getPartySize();
             }
         }

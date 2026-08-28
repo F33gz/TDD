@@ -281,3 +281,28 @@ Resultado:
 shouldRestoreCapacityAfterCancellation expected: <true> but was: <false>
 [INFO] BUILD FAILURE
 ```
+
+Commit:
+
+```text
+5f08b5c test: add test for restoring capacity after reservation cancellation
+```
+
+### GREEN
+
+Código:
+
+```java
+if (!reservation.isCancelled()
+        && reservation.getDate().equals(date)
+        && reservation.getTime().equals(time)) {
+    occupiedSeats += reservation.getPartySize();
+}
+```
+
+Resultado:
+
+```text
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```
