@@ -44,4 +44,14 @@ public class ReservationManager {
         }
         return occupiedSeats + partySize <= maximumCapacity;
     }
+
+    public void cancelReservation(String code) {
+        for (Reservation reservation : reservations) {
+            if (reservation.getCode().equals(code)) {
+                reservation.cancel();
+                return;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
 }

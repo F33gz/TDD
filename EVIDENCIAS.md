@@ -205,3 +205,27 @@ Resultado:
 [ERROR] cannot find symbol: method isCancelled()
 [INFO] BUILD FAILURE
 ```
+
+Commit:
+
+```text
+6d4be72 test: cover reservation cancellation
+```
+
+### GREEN
+
+Código:
+
+```java
+if (reservation.getCode().equals(code)) {
+    reservation.cancel();
+    return;
+}
+```
+
+Resultado:
+
+```text
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```

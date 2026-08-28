@@ -11,6 +11,7 @@ public class Reservation {
     private final int partySize;
     private final LocalDate date;
     private final LocalTime time;
+    private boolean cancelled;
 
     Reservation(String customerName, int partySize, LocalDate date, LocalTime time) {
         this.code = UUID.randomUUID().toString();
@@ -38,5 +39,16 @@ public class Reservation {
 
     public LocalTime getTime() {
         return time;
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    void cancel() {
+        if (cancelled) {
+            throw new IllegalStateException();
+        }
+        cancelled = true;
     }
 }
