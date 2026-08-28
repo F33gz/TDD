@@ -172,3 +172,9 @@ Resultado:
 [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
+
+Commit:
+
+```text
+91e2a48 feat: refactor capacity check in reservation creation to use hasAvailability method
+```
