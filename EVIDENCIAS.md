@@ -51,3 +51,30 @@ Resultado:
 [ERROR]   symbol:   class Reservation
 [INFO] BUILD FAILURE
 ```
+
+Commit:
+
+```text
+a6edff9 test: add reservation creation test
+```
+
+### GREEN
+
+Código:
+
+```java
+public Reservation createReservation(
+        String customerName,
+        int partySize,
+        LocalDate date,
+        LocalTime time) {
+    return new Reservation(customerName, partySize, date, time);
+}
+```
+
+Resultado:
+
+```text
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```
