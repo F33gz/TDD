@@ -50,6 +50,16 @@ public class ReservationManager {
         reservation.cancel();
     }
 
+    public List<Reservation> getReservationsByDate(LocalDate date) {
+        List<Reservation> reservationsForDate = new ArrayList<>();
+        for (Reservation reservation : reservations) {
+            if (!reservation.isCancelled() && reservation.getDate().equals(date)) {
+                reservationsForDate.add(reservation);
+            }
+        }
+        return reservationsForDate;
+    }
+
     private Reservation findReservation(String code) {
         for (Reservation reservation : reservations) {
             if (reservation.getCode().equals(code)) {
