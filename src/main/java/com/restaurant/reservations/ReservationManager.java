@@ -26,18 +26,22 @@ public class ReservationManager {
             throw new IllegalArgumentException();
         }
 
-        int occupiedSeats = 0;
-        for (Reservation reservation : reservations) {
-            if (reservation.getDate().equals(date) && reservation.getTime().equals(time)) {
-                occupiedSeats += reservation.getPartySize();
-            }
-        }
-        if (occupiedSeats + partySize > maximumCapacity) {
+        if (!hasAvailability(date, time, partySize)) {
             throw new IllegalStateException();
         }
 
         Reservation reservation = new Reservation(customerName, partySize, date, time);
         reservations.add(reservation);
         return reservation;
+    }
+
+    public boolean hasAvailability(LocalDate date, LocalTime time, int partySize) {
+        int occupiedSeats = 0;
+        for (Reservation reservation : reservations) {
+            if (reservation.getDate().equals(date) && reservation.getTime().equals(time)) {
+                occupiedSeats += reservation.getPartySize();
+            }
+        }
+        return occupiedSeats + partySize <= maximumCapacity;
     }
 }

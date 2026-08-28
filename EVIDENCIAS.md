@@ -155,3 +155,20 @@ Resultado:
 [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
+
+Commit:
+
+```text
+ee00ace feat: implement capacity check in reservation creation
+```
+
+### REFACTOR
+
+Cambio realizado: el cálculo de capacidad se extrajo a `hasAvailability(...)`.
+
+Resultado:
+
+```text
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```
