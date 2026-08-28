@@ -16,7 +16,7 @@ public class ReservationManager {
             int partySize,
             LocalDate date,
             LocalTime time) {
-        if (customerName == null || date == null || time == null) {
+        if (customerName == null || customerName.isBlank() || date == null || time == null) {
             throw new IllegalArgumentException();
         }
         if (partySize <= 0) {
