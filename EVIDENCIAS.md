@@ -78,3 +78,21 @@ Resultado:
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
+
+Commit:
+
+```text
+b99360d feat: implement Reservation and ReservationManager classes
+```
+
+### REFACTOR
+
+Cambio realizado: `maximumCapacity` ahora se conserva como estado de
+`ReservationManager` en lugar de descartarse.
+
+Resultado:
+
+```text
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```

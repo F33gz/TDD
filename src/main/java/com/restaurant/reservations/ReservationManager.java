@@ -5,7 +5,10 @@ import java.time.LocalTime;
 
 public class ReservationManager {
 
+    private final int maximumCapacity;
+
     public ReservationManager(int maximumCapacity) {
+        this.maximumCapacity = maximumCapacity;
     }
 
     public Reservation createReservation(
