@@ -130,3 +130,28 @@ Resultado:
 Expected java.lang.IllegalStateException to be thrown, but nothing was thrown.
 [INFO] BUILD FAILURE
 ```
+
+Commit:
+
+```text
+42aa4a5 feat: add test to reject reservation when capacity is insufficient
+```
+
+### GREEN
+
+Código:
+
+```java
+if (occupiedSeats + partySize > maximumCapacity) {
+    throw new IllegalStateException();
+}
+
+reservations.add(reservation);
+```
+
+Resultado:
+
+```text
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```

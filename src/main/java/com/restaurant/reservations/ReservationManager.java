@@ -2,10 +2,13 @@ package com.restaurant.reservations;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReservationManager {
 
     private final int maximumCapacity;
+    private final List<Reservation> reservations = new ArrayList<>();
 
     public ReservationManager(int maximumCapacity) {
         this.maximumCapacity = maximumCapacity;
@@ -23,6 +26,18 @@ public class ReservationManager {
             throw new IllegalArgumentException();
         }
 
-        return new Reservation(customerName, partySize, date, time);
+        int occupiedSeats = 0;
+        for (Reservation reservation : reservations) {
+            if (reservation.getDate().equals(date) && reservation.getTime().equals(time)) {
+                occupiedSeats += reservation.getPartySize();
+            }
+        }
+        if (occupiedSeats + partySize > maximumCapacity) {
+            throw new IllegalStateException();
+        }
+
+        Reservation reservation = new Reservation(customerName, partySize, date, time);
+        reservations.add(reservation);
+        return reservation;
     }
 }
