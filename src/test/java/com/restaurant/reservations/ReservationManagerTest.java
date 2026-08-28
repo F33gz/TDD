@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -210,5 +211,23 @@ class ReservationManagerTest {
         manager.cancelReservation(reservation.getCode());
 
         assertTrue(manager.hasAvailability(date, time, 30));
+    }
+
+    @Test
+    void shouldReturnActiveReservationsForDate() {
+        ReservationManager manager = new ReservationManager(30);
+        LocalDate date = LocalDate.of(2026, 9, 15);
+        Reservation activeReservation = manager.createReservation(
+                "Ana", 4, date, LocalTime.of(20, 0));
+        manager.createReservation(
+                "Ben", 2, LocalDate.of(2026, 9, 16), LocalTime.of(20, 0));
+        Reservation cancelledReservation = manager.createReservation(
+                "Cara", 3, date, LocalTime.of(21, 0));
+        manager.cancelReservation(cancelledReservation.getCode());
+
+        List<Reservation> reservations = manager.getReservationsByDate(date);
+
+        assertEquals(1, reservations.size());
+        assertEquals(activeReservation.getCode(), reservations.get(0).getCode());
     }
 }

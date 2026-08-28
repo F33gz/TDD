@@ -323,3 +323,9 @@ Resultado:
 [INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
+
+Commit:
+
+```text
+b8a8fc6 refactor: refactor availability check to use isActiveAt method for active reservations
+```
