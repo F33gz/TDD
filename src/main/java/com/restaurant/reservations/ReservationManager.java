@@ -16,10 +16,7 @@ public class ReservationManager {
             int partySize,
             LocalDate date,
             LocalTime time) {
-        if (customerName == null) {
-            throw new IllegalArgumentException();
-        }
-        if (date == null) {
+        if (customerName == null || date == null) {
             throw new IllegalArgumentException();
         }
 
