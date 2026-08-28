@@ -229,3 +229,20 @@ Resultado:
 [INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
+
+Commit:
+
+```text
+c6f8cfd feat: implement reservation cancellation functionality
+```
+
+### REFACTOR
+
+Cambio realizado: la búsqueda por código se extrajo a `findReservation(...)`.
+
+Resultado:
+
+```text
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```

@@ -46,10 +46,14 @@ public class ReservationManager {
     }
 
     public void cancelReservation(String code) {
+        Reservation reservation = findReservation(code);
+        reservation.cancel();
+    }
+
+    private Reservation findReservation(String code) {
         for (Reservation reservation : reservations) {
             if (reservation.getCode().equals(code)) {
-                reservation.cancel();
-                return;
+                return reservation;
             }
         }
         throw new IllegalArgumentException();
