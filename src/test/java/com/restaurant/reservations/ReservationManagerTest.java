@@ -2,6 +2,7 @@ package com.restaurant.reservations;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDate;
@@ -29,14 +30,16 @@ class ReservationManagerTest {
         assertEquals(time, reservation.getTime());
     }
 
-    @Test
-    void shouldRejectReservationWhenCustomerNameIsNull() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "\t"})
+    void shouldRejectReservationWhenCustomerNameIsBlank(String customerName) {
         ReservationManager manager = new ReservationManager(30);
 
         assertThrows(
                 IllegalArgumentException.class,
                 () -> manager.createReservation(
-                        null,
+                        customerName,
                         4,
                         LocalDate.of(2026, 9, 15),
                         LocalTime.of(20, 0)));
