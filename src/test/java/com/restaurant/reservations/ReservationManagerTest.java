@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -79,5 +80,19 @@ class ReservationManagerTest {
                         partySize,
                         LocalDate.of(2026, 9, 15),
                         LocalTime.of(20, 0)));
+    }
+
+    @Test
+    void shouldGenerateDifferentCodesForReservations() {
+        ReservationManager manager = new ReservationManager(30);
+        LocalDate date = LocalDate.of(2026, 9, 15);
+        LocalTime time = LocalTime.of(20, 0);
+
+        Reservation firstReservation = manager.createReservation("Ana", 4, date, time);
+        Reservation secondReservation = manager.createReservation("Ben", 2, date, time);
+
+        assertNotNull(firstReservation.getCode());
+        assertNotNull(secondReservation.getCode());
+        assertNotEquals(firstReservation.getCode(), secondReservation.getCode());
     }
 }
