@@ -45,6 +45,10 @@ public class Reservation {
         return cancelled;
     }
 
+    boolean isActiveAt(LocalDate date, LocalTime time) {
+        return !cancelled && this.date.equals(date) && this.time.equals(time);
+    }
+
     void cancel() {
         if (cancelled) {
             throw new IllegalStateException();

@@ -306,3 +306,20 @@ Resultado:
 [INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
+
+Commit:
+
+```text
+be73140 fix: update availability check to exclude cancelled reservations
+```
+
+### REFACTOR
+
+Cambio realizado: la comprobación de reserva activa se movió a `isActiveAt(...)`.
+
+Resultado:
+
+```text
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```
