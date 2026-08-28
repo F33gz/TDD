@@ -1,6 +1,8 @@
 package com.restaurant.reservations;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -63,5 +65,19 @@ class ReservationManagerTest {
                         4,
                         LocalDate.of(2026, 9, 15),
                         null));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1})
+    void shouldRejectReservationWhenPartySizeIsNotPositive(int partySize) {
+        ReservationManager manager = new ReservationManager(30);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> manager.createReservation(
+                        "Ana",
+                        partySize,
+                        LocalDate.of(2026, 9, 15),
+                        LocalTime.of(20, 0)));
     }
 }
