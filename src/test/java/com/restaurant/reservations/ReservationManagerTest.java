@@ -7,6 +7,7 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ReservationManagerTest {
 
@@ -23,5 +24,18 @@ class ReservationManagerTest {
         assertEquals(4, reservation.getPartySize());
         assertEquals(date, reservation.getDate());
         assertEquals(time, reservation.getTime());
+    }
+
+    @Test
+    void shouldRejectReservationWhenCustomerNameIsNull() {
+        ReservationManager manager = new ReservationManager(30);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> manager.createReservation(
+                        null,
+                        4,
+                        LocalDate.of(2026, 9, 15),
+                        LocalTime.of(20, 0)));
     }
 }

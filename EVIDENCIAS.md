@@ -96,3 +96,9 @@ Resultado:
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
+
+Commit:
+
+```text
+6de7290 feat: refactor ReservationManager to maintain maximumCapacity state
+```
