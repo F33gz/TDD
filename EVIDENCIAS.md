@@ -102,3 +102,31 @@ Commit:
 ```text
 6de7290 feat: refactor ReservationManager to maintain maximumCapacity state
 ```
+
+## Ciclo 2 - Capacidad insuficiente
+
+### RED
+
+Prueba:
+
+```java
+@Test
+void shouldRejectReservationWhenCapacityIsInsufficient() {
+    ReservationManager manager = new ReservationManager(30);
+    LocalDate date = LocalDate.of(2026, 9, 15);
+    LocalTime time = LocalTime.of(20, 0);
+    manager.createReservation("Ana", 26, date, time);
+
+    assertThrows(
+            IllegalStateException.class,
+            () -> manager.createReservation("Ben", 6, date, time));
+}
+```
+
+Resultado:
+
+```text
+[ERROR] Tests run: 11, Failures: 1, Errors: 0, Skipped: 0
+Expected java.lang.IllegalStateException to be thrown, but nothing was thrown.
+[INFO] BUILD FAILURE
+```

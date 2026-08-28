@@ -98,4 +98,16 @@ class ReservationManagerTest {
         assertNotNull(secondReservation.getCode());
         assertNotEquals(firstReservation.getCode(), secondReservation.getCode());
     }
+
+    @Test
+    void shouldRejectReservationWhenCapacityIsInsufficient() {
+        ReservationManager manager = new ReservationManager(30);
+        LocalDate date = LocalDate.of(2026, 9, 15);
+        LocalTime time = LocalTime.of(20, 0);
+        manager.createReservation("Ana", 26, date, time);
+
+        assertThrows(
+                IllegalStateException.class,
+                () -> manager.createReservation("Ben", 6, date, time));
+    }
 }
