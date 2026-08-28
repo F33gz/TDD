@@ -51,4 +51,17 @@ class ReservationManagerTest {
                         null,
                         LocalTime.of(20, 0)));
     }
+
+    @Test
+    void shouldRejectReservationWhenTimeIsNull() {
+        ReservationManager manager = new ReservationManager(30);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> manager.createReservation(
+                        "Ana",
+                        4,
+                        LocalDate.of(2026, 9, 15),
+                        null));
+    }
 }
