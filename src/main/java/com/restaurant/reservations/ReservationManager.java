@@ -19,6 +19,9 @@ public class ReservationManager {
         if (customerName == null || date == null || time == null) {
             throw new IllegalArgumentException();
         }
+        if (partySize <= 0) {
+            throw new IllegalArgumentException();
+        }
 
         return new Reservation(customerName, partySize, date, time);
     }
